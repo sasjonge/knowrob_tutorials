@@ -11,6 +11,25 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run the docker compose file
         run: docker-compose up -d
+      - name: Checkout iai_common_msgs
+        uses: actions/checkout@v2
+        with:
+          path: 'ros_ws/src/iai_common_msgs'
+          repository: code-iai/iai_common_msgs
+      - name: Setup KnowRob workspace
+        uses: betwo/github-setup-catkin@master
+        env:
+            ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        with:
+          # Version range or exact version of ROS version to use, using SemVer's version range syntax. 
+          ros-version: noetic
+          # Root directory of the catkin workspace
+          workspace: $GITHUB_WORKSPACE/ros_ws
+      - name: Build KnowRob workspace
+        shell: bash
+        run: |
+          cd ros_ws
+          catkin_make_isolated
       - uses: actions/setup-python@v3
         with:
           python-version: '3.6.9'
