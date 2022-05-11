@@ -9,11 +9,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - name: Change docker-compose file
+        run: curl https://raw.githubusercontent.com/knowrob/knowrob/master/docker/docker-compose.yml -o docker-compose.yml
       - name: Run the docker compose file
         run: docker-compose up -d
       - uses: actions/setup-python@v3
         with:
-          python-version: '3.9'
+          python-version: '3.6.9'
           cache: 'pip'
       - run: pip install -r requirements.txt
       - name: Run tests
