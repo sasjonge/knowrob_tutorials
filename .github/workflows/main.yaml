@@ -1,0 +1,15 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run the docker compose file
+        run: docker-compose up -d
+      - name: Run tests
+        run: python3 scripts/test_notebooks.py
