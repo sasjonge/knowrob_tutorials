@@ -15,6 +15,7 @@ notebook_dir = os.path.join(my_path, "../lectures")
 
 # Run tests for all testfiles
 for test in os.listdir(test_dir):
+    print("Testing " + test)
     # Get test results to compare to
     test_path = os.path.join(test_dir, test)
     print(test_path)
@@ -44,11 +45,15 @@ for test in os.listdir(test_dir):
             expected = test_list[test_id]
             expected.sort()
             # Test if the result equals the expected result
-            assert expected == result, \
-                    'Test failed for execution of: \n ' \
+            print("-----------------------------")
+            if expected == result:
+                    print('Test successfull for: \n ' \
+                        + str(cell["source"]))
+            else:
+                raise Exception('Test failed for: \n ' \
                         + str(cell["source"]) + \
                         '\nExpected: ' + str(expected) + \
-                        '\nResult: \n' + str(result)
+                        '\nResult: \n' + str(result))
             test_id += 1
 
 
