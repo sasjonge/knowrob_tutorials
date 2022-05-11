@@ -15,3 +15,11 @@ To install and start jupyer-lab and run the notebooks follow this steps:
 
 To open the notebooks you can choose them from the left sidebar. You can find the first exercise in fs-ex1-robot-structure.ipynb  and the second exercise in fs-ex2-episode-structure.ipynb
 
+## Unit Testing
+
+This container contains two scripts to create and use Unit Tests for jupyer-knowrob notebooks.
+
+The unit tests can be run by executing (only tested on Ubuntu 20.0 with Python3):
+
+`python3 scripts/test_notebooks.py`
+
