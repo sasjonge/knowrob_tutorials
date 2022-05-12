@@ -1,0 +1,24 @@
+true
+*****
+true
+*****
+true
+*****
+true
+*****
+Component: http://knowrob.org/kb/PR2.owl#PR2Arm_0_L;
+Component: http://knowrob.org/kb/PR2.owl#PR2Arm_0_R;
+Component: http://knowrob.org/kb/PR2.owl#PR2Base_0;
+Component: http://knowrob.org/kb/PR2.owl#PR2Gripper_0_L;
+Component: http://knowrob.org/kb/PR2.owl#PR2Gripper_0_R;
+Component: http://knowrob.org/kb/PR2.owl#PR2BackPlate_0;
+Component: http://knowrob.org/kb/PR2.owl#PR2Neck_0;
+Component: http://knowrob.org/kb/PR2.owl#PR2Head_0
+*****
+Component: http://knowrob.org/kb/PR2.owl#PR2Arm_0_L,
+PR2Arm: http://knowrob.org/kb/PR2.owl#PR2Arm;
+Component: http://knowrob.org/kb/PR2.owl#PR2Arm_0_R,
+PR2Arm: http://knowrob.org/kb/PR2.owl#PR2Arm
+*****
+EndLink: l_forearm_cam_optical_frame;
+EndLink: l_wrist_roll_link

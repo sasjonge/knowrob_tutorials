@@ -1,4 +1,4 @@
 true
 *****
-X: {u'term': [u's', u'g']},
-Y: {u'term': [u't', u'p']}
+X: {'term': ['s', 'g']},
+Y: {'term': ['t', 'k']}

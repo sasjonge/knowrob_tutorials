@@ -45,3 +45,4 @@ jobs:
           export PYTHONPATH=/opt/ros/noetic/lib/python3/dist-packages:/home/runner/work/knowrob_tutorials/knowrob_tutorials/ros_ws/devel_isolated/:$PYTHONPATH
           source $GITHUB_WORKSPACE/ros_ws/devel_isolated/setup.bash
           python3 scripts/test_notebooks.py
+      - uses: ResearchSoftwareActions/EnsureCleanNotebooksAction@1.1
