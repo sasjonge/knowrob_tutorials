@@ -9,8 +9,19 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Run the docker compose file
-        run: docker-compose up -d
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.6.9'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - name: Install jupyter-knowrob kernel
+        run:  |
+          pip install git+https://github.com/sasjonge/jupyter-knowrob.git
+          mkdir -p ~/.local/share/jupyter/kernels/jknowrob
+          wget https://raw.githubusercontent.com/sasjonge/jupyter-knowrob/master/kernel.json -P ~/.local/share/jupyter/kernels/jknowrob
+      - name: Install packages
+        run: |
+          sudo apt-get install -y python3-yaml python3-empy
       - name: Checkout iai_common_msgs
         uses: actions/checkout@v2
         with:
@@ -29,16 +40,8 @@ jobs:
         shell: bash
         run: |
           cd ros_ws
-          catkin_make_isolated
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.6.9'
-          cache: 'pip'
-      - run: pip install -r requirements.txt
-      - name: Install jupyter-knowrob kernel
-        run:  |
-          pip install git+https://github.com/sasjonge/jupyter-knowrob.git
-          mkdir -p ~/.local/share/jupyter/kernels/jknowrob
-          wget https://raw.githubusercontent.com/sasjonge/jupyter-knowrob/master/kernel.json -P ~/.local/share/jupyter/kernels/jknowrob
+          catkin_make_isolated  -DPYTHON_EXECUTABLE=/usr/bin/python3
+      - name: Run the docker compose file
+        run: docker-compose up -d
       - name: Run tests
         run: python3 scripts/test_notebooks.py
