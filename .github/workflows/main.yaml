@@ -19,9 +19,6 @@ jobs:
           pip install git+https://github.com/sasjonge/jupyter-knowrob.git
           mkdir -p ~/.local/share/jupyter/kernels/jknowrob
           wget https://raw.githubusercontent.com/sasjonge/jupyter-knowrob/master/kernel.json -P ~/.local/share/jupyter/kernels/jknowrob
-      - name: Install packages
-        run: |
-          sudo apt-get install -y python3-yaml python3-empy
       - name: Checkout iai_common_msgs
         uses: actions/checkout@v2
         with:
@@ -44,4 +41,7 @@ jobs:
       - name: Run the docker compose file
         run: docker-compose up -d
       - name: Run tests
-        run: python3 scripts/test_notebooks.py
+        run: |
+          export PYTHONPATH=/opt/ros/noetic/lib/python3/dist-packages:/home/runner/work/knowrob_tutorials/knowrob_tutorials/ros_ws/devel_isolated/:$PYTHONPATH
+          source $GITHUB_WORKSPACE/ros_ws/devel_isolated/setup.bash
+          python3 scripts/test_notebooks.py
